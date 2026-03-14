@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Fajar Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,11 +21,6 @@
             background: black;
             color: white;
             transition: 0.3s;
-        }
-        
-        .light {
-            background: #f4f4f4;
-            color: black;
         }
         
         section {
@@ -57,6 +53,7 @@
             background-size: cover;
             background-position: center;
         }
+        /* NAV */
         
         nav {
             position: fixed;
@@ -76,7 +73,7 @@
             font-size: 16px;
         }
         
-        nav a {
+        .nav-links a {
             color: #aaa;
             margin-right: 20px;
             text-decoration: none;
@@ -84,8 +81,75 @@
             font-weight: 500;
         }
         
-        nav a:hover {
+        .nav-links a:hover {
             color: #3b82f6;
+        }
+        /* HAMBURGER */
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        /* MOBILE MENU */
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.97);
+            z-index: 100;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 40px;
+            box-sizing: border-box;
+        }
+        
+        .mobile-menu.open {
+            display: flex;
+        }
+        
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: 700;
+            padding: 12px 0;
+            border-bottom: 1px solid #1e293b;
+            width: 100%;
+            transition: 0.3s;
+        }
+        
+        .mobile-menu a:hover {
+            color: #3b82f6;
+        }
+        
+        .mobile-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 28px;
+            cursor: pointer;
+            color: white;
+            background: none;
+            border: none;
         }
         
         .content {
@@ -287,7 +351,6 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-            margin-bottom: 0;
         }
         
         .about-info-item {
@@ -658,22 +721,38 @@
             font-weight: 500;
             color: white;
         }
+        /* RESPONSIVE */
         
         @media(max-width:768px) {
             section {
-                padding: 50px 25px;
+                padding: 60px 24px;
             }
             h1 {
-                font-size: 42px;
+                font-size: 38px;
+            }
+            h2 {
+                font-size: 30px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
             }
             .about-container {
                 grid-template-columns: 1fr;
             }
             .about-photo,
             .about-photo-placeholder {
-                width: 200px;
-                height: 200px;
+                width: 180px;
+                height: 180px;
                 margin: 0 auto;
+            }
+            .about-info-grid {
+                grid-template-columns: 1fr;
+            }
+            .interests-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             .portfolio-grid {
                 grid-template-columns: 1fr;
@@ -685,14 +764,12 @@
             .services-grid {
                 grid-template-columns: 1fr;
             }
-            .interests-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
             .contact-grid {
                 grid-template-columns: 1fr;
             }
-            .about-info-grid {
-                grid-template-columns: 1fr;
+            .subtitle {
+                font-size: 13px;
+                white-space: normal;
             }
         }
     </style>
@@ -702,7 +779,7 @@
 
     <nav>
         <div>Muhamad Fajar Nurcahyadi</div>
-        <div>
+        <div class="nav-links">
             <a href="#home">Home</a>
             <a href="#interests">Interests</a>
             <a href="#about">About</a>
@@ -712,7 +789,23 @@
             <a href="#portfolio">Portfolio</a>
             <a href="#contact">Contact</a>
         </div>
+        <button class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="modal-close mobile-close" onclick="toggleMenu()">✕</button>
+        <a href="#home" onclick="toggleMenu()">Home</a>
+        <a href="#interests" onclick="toggleMenu()">Interests</a>
+        <a href="#about" onclick="toggleMenu()">About</a>
+        <a href="#skills" onclick="toggleMenu()">Skills</a>
+        <a href="#services" onclick="toggleMenu()">Services</a>
+        <a href="#resume" onclick="toggleMenu()">Resume</a>
+        <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
+        <a href="#contact" onclick="toggleMenu()">Contact</a>
+    </div>
 
     <!-- HERO -->
     <section class="hero" id="home">
@@ -750,7 +843,7 @@
                 </div>
             </div>
             <div>
-                <div class="about-role">Fullstack Developer, UI/UX Designer & Technical Documentation</div>
+                <div class="about-role">Fullstack Developer & UI/UX Designer</div>
                 <p class="about-desc">I am an active 6th semester student at Bina Sarana Informatika with a strong interest and focus in software development. I am particularly interested in UI/UX Design, Backend Engineering, Frontend Engineering, Web Development, and Mobile
                     Development. By combining design and development skills, I strive to create digital solutions that are not only functional but also provide an optimal user experience.</p>
                 <div class="about-info-grid">
@@ -764,7 +857,7 @@
                     </div>
                     <div class="about-info-item">
                         <i class="fas fa-chevron-right"></i>
-                        <span><span class="about-info-label">Phone:</span><span class="about-info-value">+62 818 - 1824 - 1116</span></span>
+                        <span><span class="about-info-label">Phone:</span><span class="about-info-value">+62 xxx-xxxx-xxxx</span></span>
                     </div>
                     <div class="about-info-item">
                         <i class="fas fa-chevron-right"></i>
@@ -933,27 +1026,21 @@
         <p style="color:#aaa; margin-bottom:40px;">Feel free to reach out to me through any of the platforms below.</p>
         <div class="contact-grid">
             <a href="mailto:fajar.nurcahyadi515@gmail.com" class="contact-card">
-                <div class="contact-icon" style="background:#ea4335;">
-                    <i class="fas fa-envelope"></i>
-                </div>
+                <div class="contact-icon" style="background:#ea4335;"><i class="fas fa-envelope"></i></div>
                 <div>
                     <div class="contact-label">Email</div>
                     <div class="contact-value">fajar.nurcahyadi515@gmail.com</div>
                 </div>
             </a>
             <a href="https://www.linkedin.com/in/muhamad-fajar-nurcahyadi-679999290/" target="_blank" class="contact-card">
-                <div class="contact-icon" style="background:#0a66c2;">
-                    <i class="fab fa-linkedin"></i>
-                </div>
+                <div class="contact-icon" style="background:#0a66c2;"><i class="fab fa-linkedin"></i></div>
                 <div>
                     <div class="contact-label">LinkedIn</div>
                     <div class="contact-value">Muhamad Fajar Nurcahyadi</div>
                 </div>
             </a>
             <a href="https://instagram.com/jarrnrchyd" target="_blank" class="contact-card">
-                <div class="contact-icon" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
-                    <i class="fab fa-instagram"></i>
-                </div>
+                <div class="contact-icon" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);"><i class="fab fa-instagram"></i></div>
                 <div>
                     <div class="contact-label">Instagram</div>
                     <div class="contact-value">@jarrnrchyd</div>
@@ -980,7 +1067,11 @@
     </div>
 
     <script>
-        let text = "Fullstack Developer | UI/UX Designer | Technical Documentation";
+        function toggleMenu() {
+            document.getElementById("mobileMenu").classList.toggle("open");
+        }
+
+        let text = "Fullstack Developer | UI/UX Designer";
         let i = 0;
 
         function typing() {
