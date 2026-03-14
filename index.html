@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fajar Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: black;
+            color: white;
+            transition: 0.3s;
+        }
+        
+        .light {
+            background: #f4f4f4;
+            color: black;
+        }
+        
+        section {
+            padding: 100px 80px;
+        }
+        
+        h1 {
+            font-size: 68px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.05;
+        }
+        
+        h2 {
+            color: #3b82f6;
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        p {
+            color: #ccc;
+            line-height: 1.7;
+        }
+        
+        .hero {
+            min-height: auto;
+            background: linear-gradient(to right, rgba(0, 0, 0, .9), rgba(0, 0, 0, .5), rgba(0, 0, 0, .9)), url("bg.jpg");
+            background-size: cover;
+            background-position: center;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #020617;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            z-index: 99;
+            box-sizing: border-box;
+        }
+        
+        nav div:first-child {
+            font-weight: 800;
+            font-size: 16px;
+        }
+        
+        nav a {
+            color: #aaa;
+            margin-right: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            color: #3b82f6;
+        }
+        
+        .content {
+            margin-top: 120px;
+            max-width: 700px;
+            padding-bottom: 60px;
+        }
+        
+        .subtitle {
+            font-size: 17px;
+            border-bottom: 2px solid #3b82f6;
+            display: block;
+            padding-bottom: 6px;
+            margin-bottom: 30px;
+            white-space: nowrap;
+            color: #aaa;
+            font-weight: 500;
+        }
+        
+        .btn {
+            background: #3b82f6;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            white-space: nowrap;
+            display: inline-block;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2563eb;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: #020617;
+            padding: 20px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.7s;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: none;
+        }
+        
+        #modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        
+        .modal-box {
+            background: #0f172a;
+            border-radius: 16px;
+            max-width: 560px;
+            width: 90%;
+            border: 1px solid #1e293b;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .modal-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .modal-body {
+            padding: 28px 32px 32px;
+        }
+        
+        .modal-body h3 {
+            color: #3b82f6;
+            font-size: 22px;
+            margin: 0 0 6px;
+        }
+        
+        .modal-cat {
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        
+        .modal-body p {
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .section-label {
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: #aaa;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-label::after {
+            content: '';
+            flex: 0 0 60px;
+            height: 2px;
+            background: #3b82f6;
+        }
+        /* ABOUT */
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            align-items: start;
+            margin-top: 20px;
+        }
+        
+        .about-photo {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #3b82f6;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .about-photo-placeholder {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: #0f172a;
+            border: 4px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: #3b82f6;
+        }
+        
+        .about-role {
+            color: #3b82f6;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .about-desc {
+            color: #ccc;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-size: 15px;
+        }
+        
+        .about-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 0;
+        }
+        
+        .about-info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+        
+        .about-info-item i {
+            color: #3b82f6;
+            font-size: 14px;
+        }
+        
+        .about-info-label {
+            color: #64748b;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+        
+        .about-info-value {
+            color: white;
+            font-weight: 500;
+        }
+        /* INTERESTS */
+        
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+        
+        .interest-card {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            transition: 0.3s;
+        }
+        
+        .interest-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-3px);
+            background: #1e293b;
+        }
+        
+        .interest-card i {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        /* SERVICES */
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 40px 28px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #1e293b;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        
+        .service-icon {
+            width: 72px;
+            height: 72px;
+            background: #1d4ed8;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 28px;
+            color: white;
+            transition: 0.3s;
+        }
+        
+        .service-card:hover .service-icon {
+            background: #2563eb;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        
+        .service-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            margin: 0 0 12px;
+        }
+        
+        .service-card p {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.7;
+            margin: 0;
+        }
+        /* RESUME */
+        
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+        
+        .resume-col h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 0;
+            width: 2px;
+            background: #1e293b;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 36px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 2px solid #3b82f6;
+            box-shadow: 0 0 8px #3b82f666;
+        }
+        
+        .timeline-item h4 {
+            color: #3b82f6;
+            font-size: 15px;
+            font-weight: 700;
+            margin: 0 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .timeline-badge {
+            display: inline-block;
+            background: #0f172a;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-item p {
+            color: #aaa;
+            font-size: 14px;
+            margin: 0;
+            font-style: italic;
+        }
+        /* PORTFOLIO */
+        
+        .porto-filter {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .porto-filter button {
+            background: transparent;
+            color: white;
+            border: 2px solid #333;
+            padding: 10px 26px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+        }
+        
+        .porto-filter button:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .porto-filter button.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .porto-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            background: #020617;
+        }
+        
+        .porto-card img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+        
+        .porto-card:hover img {
+            transform: scale(1.08);
+        }
+        
+        .porto-hover {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.4s;
+            gap: 10px;
+        }
+        
+        .porto-card:hover .porto-hover {
+            opacity: 1;
+        }
+        
+        .porto-zoom {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            transition: 0.3s;
+            margin-bottom: 6px;
+        }
+        
+        .porto-zoom:hover {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            transform: scale(1.1);
+        }
+        
+        .porto-hover h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            text-align: center;
+        }
+        
+        .porto-hover span {
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .porto-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #3b82f6;
+            border: 1px solid #3b82f6;
+            color: white;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        /* CONTACT */
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            max-width: 100%;
+        }
+        
+        .contact-card {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+        
+        .contact-card:hover {
+            border-color: #3b82f6;
+            transform: translateX(6px);
+            background: #1e293b;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .contact-label {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        
+        .contact-value {
+            font-size: 15px;
+            font-weight: 500;
+            color: white;
+        }
+        
+        @media(max-width:768px) {
+            section {
+                padding: 50px 25px;
+            }
+            h1 {
+                font-size: 42px;
+            }
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            .about-photo,
+            .about-photo-placeholder {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            .resume-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .interests-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div>Muhamad Fajar Nurcahyadi</div>
+        <div>
+            <a href="#home">Home</a>
+            <a href="#interests">Interests</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#services">Services</a>
+            <a href="#resume">Resume</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="content reveal">
+            <h1>Muhamad Fajar Nurcahyadi</h1>
+            <div class="subtitle"><span id="typing"></span></div>
+            <a class="btn" href="cv.pdf" download>Download CV</a>
+        </div>
+    </section>
+
+    <!-- INTERESTS -->
+    <section id="interests" class="reveal">
+        <div class="section-label">Interests</div>
+        <div class="interests-grid">
+            <div class="interest-card"><i class="fas fa-code" style="color:#f59e0b;"></i><span>Coding</span></div>
+            <div class="interest-card"><i class="fas fa-gamepad" style="color:#f97316;"></i><span>Games</span></div>
+            <div class="interest-card"><i class="fas fa-mobile-alt" style="color:#06b6d4;"></i><span>Mobile Dev</span></div>
+            <div class="interest-card"><i class="fas fa-mountain" style="color:#8b5cf6;"></i><span>Hiking</span></div>
+            <div class="interest-card"><i class="fas fa-paint-brush" style="color:#ec4899;"></i><span>UI/UX Design</span></div>
+            <div class="interest-card"><i class="fas fa-server" style="color:#3b82f6;"></i><span>Frontend/Backend Dev</span></div>
+            <div class="interest-card"><i class="fas fa-code" style="color:#38bdf8;"></i><span>Flutter</span></div>
+            <div class="interest-card"><i class="fas fa-tasks" style="color:#a855f7;"></i><span>Long-Term Projects</span></div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+        <div class="section-label">About</div>
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div style="display:flex; justify-content:center;">
+                <img src="foto.jpg" alt="Fajar" class="about-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="about-photo-placeholder" style="display:none;">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+            <div>
+                <div class="about-role">Fullstack Developer, UI/UX Designer & Technical Documentation</div>
+                <p class="about-desc">I am an active 6th semester student at Bina Sarana Informatika with a strong interest and focus in software development. I am particularly interested in UI/UX Design, Backend Engineering, Frontend Engineering, Web Development, and Mobile
+                    Development. By combining design and development skills, I strive to create digital solutions that are not only functional but also provide an optimal user experience.</p>
+                <div class="about-info-grid">
+                    <div class="about-info-item">
+                        <i class="fas fa-chevron-right"></i>
+                        <span><span class="about-info-label">Email:</span><span class="about-info-value">fajar.nurcahyadi515@gmail.com</span></span>
+                    </div>
+                    <div class="about-info-item">
+                        <i class="fas fa-chevron-right"></i>
+                        <span><span class="about-info-label">Stack:</span><span class="about-info-value">Mobile, Frontend, Backend</span></span>
+                    </div>
+                    <div class="about-info-item">
+                        <i class="fas fa-chevron-right"></i>
+                        <span><span class="about-info-label">Phone:</span><span class="about-info-value">+62 818 - 1824 - 1116</span></span>
+                    </div>
+                    <div class="about-info-item">
+                        <i class="fas fa-chevron-right"></i>
+                        <span><span class="about-info-label">Freelance:</span><span class="about-info-value" style="color:#3b82f6;">Available</span></span>
+                    </div>
+                    <div class="about-info-item">
+                        <i class="fas fa-chevron-right"></i>
+                        <span><span class="about-info-label">City:</span><span class="about-info-value">Bekasi, Indonesia</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+        <h2>Skills</h2>
+        <div class="grid">
+            <div class="card">Flutter</div>
+            <div class="card">JavaScript</div>
+            <div class="card">PHP</div>
+            <div class="card">CodeIgniter</div>
+            <div class="card">MySQL</div>
+            <div class="card">Go (Golang)</div>
+            <div class="card">Technical Documentation</div>
+            <div class="card">Figma</div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="reveal">
+        <div class="section-label">Services</div>
+        <h2>MY SERVICES</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-globe"></i></div>
+                <h3>Website Applications</h3>
+                <p>Membangun aplikasi web modern dan responsif menggunakan PHP, CodeIgniter, dan teknologi web terkini.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Mobile Applications</h3>
+                <p>Mengembangkan aplikasi mobile cross-platform menggunakan Flutter dan Dart untuk Android maupun iOS.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-code"></i></div>
+                <h3>Frontend Engineer</h3>
+                <p>Merancang tampilan UI yang menarik dan interaktif menggunakan HTML, CSS, dan JavaScript.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-server"></i></div>
+                <h3>Backend Engineer</h3>
+                <p>Membangun REST API yang handal menggunakan Go lang (Gin), PostgreSQL, dan arsitektur yang skalabel.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-pencil-ruler"></i></div>
+                <h3>UI/UX Design</h3>
+                <p>Mendesain pengalaman pengguna yang intuitif dan estetis menggunakan Figma dan prinsip desain modern.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume" class="reveal">
+        <div class="section-label">Resume</div>
+        <h2>CHECK MY RESUME</h2>
+        <div class="resume-grid">
+            <div class="resume-col">
+                <h3>Education</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Universitas Bina Sarana Informatika</h4>
+                        <span class="timeline-badge">2023 - Present</span>
+                        <p>Informatika</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>SMA Negeri 9 Tambun Selatan</h4>
+                        <span class="timeline-badge">2020 - 2023</span>
+                        <p>Ilmu Pengetahuan Alam</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>SMP Negeri 12 Tambun Selatan</h4>
+                        <span class="timeline-badge">2017 - 2020</span>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>SDN Negeri Wanasari 15</h4>
+                        <span class="timeline-badge">2010 - 2016</span>
+                    </div>
+                </div>
+            </div>
+            <div class="resume-col">
+                <h3>Professional Experience</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Badan Nasional Penanggulangan Bencana</h4>
+                        <span class="timeline-badge">January 2026 - February 2026</span>
+                        <p>Frontend/Backend Engineer, Technical Writing SI DAMA Application</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="reveal">
+        <h2>Portfolio</h2>
+        <p style="color:#aaa; margin-bottom:30px; font-size:13px; letter-spacing:2px; text-transform:uppercase;">My Works</p>
+        <div class="porto-filter">
+            <button class="active" onclick="filterPortfolio('all', this)">ALL</button>
+            <button onclick="filterPortfolio('mobile', this)">MOBILE APP</button>
+            <button onclick="filterPortfolio('website', this)">WEBSITE APP</button>
+            <button onclick="filterPortfolio('uiux', this)">UI/UX</button>
+            <button onclick="filterPortfolio('frontend', this)">FRONTEND/BACKEND</button>
+        </div>
+        <div class="portfolio-grid">
+            <div class="porto-card" data-category="website">
+                <span class="porto-tag">WEBSITE</span>
+                <img src="project1.jpg" alt="Project Website" onerror="this.src='https://placehold.co/400x260/020617/3b82f6?text=Project+Website'">
+                <div class="porto-hover">
+                    <div class="porto-zoom" onclick="openModal('Project Website','WEBSITE APP','Web Development · PHP · CodeIgniter','project1.jpg')">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h3>Project Website</h3>
+                    <span>Website App</span>
+                </div>
+            </div>
+            <div class="porto-card" data-category="mobile">
+                <span class="porto-tag">MOBILE</span>
+                <img src="project2.jpg" alt="Mobile App" onerror="this.src='https://placehold.co/400x260/020617/3b82f6?text=Mobile+App'">
+                <div class="porto-hover">
+                    <div class="porto-zoom" onclick="openModal('Mobile App','MOBILE APP','Mobile Development · Flutter · Dart','project2.jpg')">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h3>Mobile App</h3>
+                    <span>Mobile App</span>
+                </div>
+            </div>
+            <div class="porto-card" data-category="uiux">
+                <span class="porto-tag">UI/UX</span>
+                <img src="project3.jpg" alt="UI/UX Design" onerror="this.src='https://placehold.co/400x260/020617/3b82f6?text=UI/UX+Design'">
+                <div class="porto-hover">
+                    <div class="porto-zoom" onclick="openModal('UI/UX Design','UI/UX','UI/UX · Figma · Prototyping','project3.jpg')">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <span>UI/UX</span>
+                </div>
+            </div>
+            <div class="porto-card" data-category="frontend">
+                <span class="porto-tag">FRONTEND/BACKEND</span>
+                <img src="project4.jpg" alt="SI DAMA" onerror="this.src='https://placehold.co/400x260/020617/3b82f6?text=SI+DAMA'">
+                <div class="porto-hover">
+                    <div class="porto-zoom" onclick="openModal('Frontend/Backend Engineer','FRONTEND / BACKEND','Golang (Gin) · JavaScript · PostgreSQL · REST API','project4.jpg')">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h3>SI DAMA</h3>
+                    <span>Frontend / Backend</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+        <h2>Contact</h2>
+        <p style="color:#aaa; margin-bottom:40px;">Feel free to reach out to me through any of the platforms below.</p>
+        <div class="contact-grid">
+            <a href="mailto:fajar.nurcahyadi515@gmail.com" class="contact-card">
+                <div class="contact-icon" style="background:#ea4335;">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">fajar.nurcahyadi515@gmail.com</div>
+                </div>
+            </a>
+            <a href="https://www.linkedin.com/in/muhamad-fajar-nurcahyadi-679999290/" target="_blank" class="contact-card">
+                <div class="contact-icon" style="background:#0a66c2;">
+                    <i class="fab fa-linkedin"></i>
+                </div>
+                <div>
+                    <div class="contact-label">LinkedIn</div>
+                    <div class="contact-value">Muhamad Fajar Nurcahyadi</div>
+                </div>
+            </a>
+            <a href="https://instagram.com/jarrnrchyd" target="_blank" class="contact-card">
+                <div class="contact-icon" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div>
+                    <div class="contact-label">Instagram</div>
+                    <div class="contact-value">@jarrnrchyd</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer style="text-align:center;padding:20px;color:#888;">
+        2026 - Build with ♥ by Fajar
+    </footer>
+
+    <!-- MODAL -->
+    <div id="modal" onclick="handleModalClick(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <img id="modal-img" class="modal-img" src="" alt="">
+            <div class="modal-body">
+                <h3 id="modal-title"></h3>
+                <div class="modal-cat" id="modal-cat"></div>
+                <p id="modal-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let text = "Fullstack Developer | UI/UX Designer | Technical Documentation";
+        let i = 0;
+
+        function typing() {
+            if (i < text.length) {
+                document.getElementById("typing").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typing, 80);
+            }
+        }
+        typing();
+
+        function reveal() {
+            document.querySelectorAll(".reveal").forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) {
+                    el.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        function openModal(title, cat, desc, img) {
+            document.getElementById("modal-title").innerText = title;
+            document.getElementById("modal-cat").innerText = cat;
+            document.getElementById("modal-desc").innerText = desc;
+            document.getElementById("modal-img").src = img;
+            document.getElementById("modal-img").alt = title;
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function handleModalClick(e) {
+            if (e.target === document.getElementById("modal")) closeModal();
+        }
+
+        function filterPortfolio(cat, btnEl) {
+            document.querySelectorAll('.porto-card').forEach(card => {
+                card.style.display = (cat === 'all' || card.dataset.category === cat) ? 'block' : 'none';
+            });
+            document.querySelectorAll('.porto-filter button').forEach(btn => btn.classList.remove('active'));
+            btnEl.classList.add('active');
+        }
+    </script>
+
+</body>
+
+</html>
